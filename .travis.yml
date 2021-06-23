@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - "stable"
+cache:
+  directories:
+    - node_modules
+script:
+  - npm test
+  - npm run build
+deploy:
+  provider: surge
+  skip_cleanup: true
+  project: ./build/
+  domain: umair-spacex-app.surge.sh
+on:
+  branch: master
