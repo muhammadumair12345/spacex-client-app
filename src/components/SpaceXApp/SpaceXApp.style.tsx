@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 import styled from "styled-components";
-import BGSpaceXImage from "../../images/bg-timer.jpg";
 
 export const GlobalStyle = createGlobalStyle`
     *{
