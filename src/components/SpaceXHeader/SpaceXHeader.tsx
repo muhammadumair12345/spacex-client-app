@@ -1,11 +1,12 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import SpaceXLogo from "../../images/spacex-logo.png";
+import { NavLink } from "react-router-dom";
 
 const Header: React.FC = () => {
   return (
     <Navbar collapseOnSelect bg="dark" variant="dark" sticky="top" expand="sm">
-      <Navbar.Brand href="/">
+      <NavLink to="/">
         <img
           alt=""
           src={SpaceXLogo}
@@ -14,12 +15,12 @@ const Header: React.FC = () => {
           className="d-inline-block align-top"
         />{" "}
         SpaceX App
-      </Navbar.Brand>
+      </NavLink>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav justify>
-          <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="/launches">Launches</Nav.Link>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/launches">Launches</NavLink>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
