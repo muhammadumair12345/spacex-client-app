@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-import styled from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
     *{
@@ -8,10 +7,7 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Catamaran', sans-serif;
         color:#fff;
     }
-`;
-
-export const App = styled.div`
-  height: 100vh;
-  width: 100vw;
-  background-color: #000;
+    body{
+      background-color: #000;
+    }
 `;

@@ -1,28 +1,47 @@
 import React from "react";
-import { useLaunchQuery } from "../../generated/graphql";
+import { useLaunchesQuery } from "../../generated/graphql";
 import SpaceXLoading from "../SpaceXLoading/SpaceXLoading";
 import SpaceXError from "../SpaceXError/SpaceXError";
+import { Card, Button } from "react-bootstrap";
+import { CardGroup } from "./SpaceXLaunches.style";
 
-const SpaceXLaunches = () => {
-  const { data, loading, error } = useLaunchQuery({
+const SpaceXLaunches: React.FC = () => {
+  const { data, loading, error } = useLaunchesQuery({
     variables: {
-      id: "20",
+      limit: 30,
     },
   });
 
   if (loading) return <SpaceXLoading />;
   if (error) return <SpaceXError />;
 
-  const launch = data?.launch;
-
   return (
     <div>
-      <h1>Launches</h1>
-      <div>{launch?.details}</div>
-      <div>{launch?.launch_success}</div>
-      <div>{launch?.launch_year}</div>
-      <div>{launch?.rocket?.rocket_name}</div>
-      <div>{launch?.mission_name}</div>
+      <h1>SpaceX Launches</h1>
+      <CardGroup>
+        {!!data?.launches &&
+          data.launches.map(
+            (launch) =>
+              !!launch && (
+                <Card key={launch?.id} className="bg-dark card">
+                  <Card.Header>
+                    Space Mission {launch?.mission_name}
+                  </Card.Header>
+                  <Card.Body>
+                    <Card.Title>
+                      Rocket {launch?.rocket?.rocket_name}
+                    </Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">
+                      Launch Site {launch.launch_site?.site_name}
+                    </Card.Subtitle>
+                    <Card.Text>Success:{launch?.launch_success}</Card.Text>
+                    <Card.Text>Year:{launch?.launch_year}</Card.Text>
+                    <Button variant="primary">Launch Detail</Button>
+                  </Card.Body>
+                </Card>
+              )
+          )}
+      </CardGroup>
     </div>
   );
 };

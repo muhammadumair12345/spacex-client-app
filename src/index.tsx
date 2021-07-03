@@ -7,7 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: "https://spacexdata.herokuapp.com/graphql",
+  uri: "http://api.spacex.land/graphql/",
   cache: new InMemoryCache(),
 });
 

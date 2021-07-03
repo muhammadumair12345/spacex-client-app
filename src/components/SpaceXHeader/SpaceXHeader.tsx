@@ -4,7 +4,7 @@ import SpaceXLogo from "../../images/spacex-logo.png";
 
 const Header: React.FC = () => {
   return (
-    <Navbar bg="dark" variant="dark" sticky="top">
+    <Navbar collapseOnSelect bg="dark" variant="dark" sticky="top" expand="sm">
       <Navbar.Brand href="/">
         <img
           alt=""
@@ -15,10 +15,13 @@ const Header: React.FC = () => {
         />{" "}
         SpaceX App
       </Navbar.Brand>
-      <Nav className="mr-auto">
-        <Nav.Link href="/">Home</Nav.Link>
-        <Nav.Link href="/launches">Launches</Nav.Link>
-      </Nav>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav justify>
+          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="/launches">Launches</Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
     </Navbar>
   );
 };

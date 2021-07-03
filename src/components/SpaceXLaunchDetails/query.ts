@@ -1,9 +1,8 @@
 import { gql } from "@apollo/client";
 
-export const SPACEX_LAUNCHES = gql`
-  query Launches($limit: Int!) {
-    launches(limit: $limit) {
-      id
+export const SPACEX_LAUNCH_DETAIL = gql`
+  query Launch($id: ID!) {
+    launch(id: $id) {
       mission_name
       rocket {
         rocket_name
@@ -13,6 +12,7 @@ export const SPACEX_LAUNCHES = gql`
       }
       launch_year
       launch_success
+      details
     }
   }
 `;
