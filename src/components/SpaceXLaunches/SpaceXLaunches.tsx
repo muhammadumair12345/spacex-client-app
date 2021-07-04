@@ -2,8 +2,9 @@ import React from "react";
 import { useLaunchesQuery } from "../../generated/graphql";
 import SpaceXLoading from "../SpaceXLoading/SpaceXLoading";
 import SpaceXError from "../SpaceXError/SpaceXError";
-import { Card, Button } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { CardGroup } from "./SpaceXLaunches.style";
+import { NavLink, Outlet } from "react-router-dom";
 
 const SpaceXLaunches: React.FC = () => {
   const { data, loading, error } = useLaunchesQuery({
@@ -34,14 +35,27 @@ const SpaceXLaunches: React.FC = () => {
                     <Card.Subtitle className="mb-2 text-muted">
                       Launch Site {launch.launch_site?.site_name}
                     </Card.Subtitle>
-                    <Card.Text>Success:{launch?.launch_success}</Card.Text>
-                    <Card.Text>Year:{launch?.launch_year}</Card.Text>
-                    <Button variant="primary">Launch Detail</Button>
+                    <Card.Text>
+                      Status:{" "}
+                      {launch?.launch_success === true ? (
+                        <span className="text-success">Launch Success</span>
+                      ) : (
+                        <span className="text-danger">Launch Fail</span>
+                      )}
+                    </Card.Text>
+                    <Card.Text>Year: {launch?.launch_year}</Card.Text>
+                    <NavLink
+                      to={`launch/${launch.id}`}
+                      className="btn btn-primary"
+                    >
+                      Launch Detail
+                    </NavLink>
                   </Card.Body>
                 </Card>
               )
           )}
       </CardGroup>
+      <Outlet />
     </div>
   );
 };
